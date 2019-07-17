@@ -3,19 +3,37 @@
     //check for form submision
     if(isset($_POST['submit']))
     {
+        $errors = array();
+
     //check if the user name and password has entered
         if(isset($_POST['email']) || strlen(trim($_POST['email'])) < 1)
-    //check if there are any errors in the form
+        {
+            $errors[] = 'Username is missing/invalid';
+        }
+        if(isset($_POST['password']) || strlen(trim($_POST['password'])) < 1)
+        {
+            $errors[] = 'Password is missing/invalid';
+        }
 
-        //save user name and password into variables
+        //check if there are any errors in the form
+        if(empty($errors))
+        {
+            
+            //save user name and password into variables
+            $email = mysqli_real_escape_string($connection , $_POST['email']);
+            $password = mysqli_real_escape_string($connection , $_POST['password']);
+            $hashed_password = sha1($password);
 
-        //prepare database query
+            //prepare database query
+            
 
-        //check if the user is valid
+            //check if the user is valid
 
-        //redirect to user.php
+            //redirect to user.php
 
-        //if not display the error
+            //if not display the error
+        }
+
 
     }
     
