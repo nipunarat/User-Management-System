@@ -1,21 +1,24 @@
 <?php require_once('inc/connection.php'); ?>
 <?php
     //check for form submision
-
+    if(isset($_POST['submit']))
+    {
     //check if the user name and password has entered
-
+        if(isset($_POST['email']) || strlen(trim($_POST['email'])) < 1)
     //check if there are any errors in the form
 
-    //save user name and password into variables
+        //save user name and password into variables
 
-    //prepare database query
+        //prepare database query
 
-    //check if the user is valid
+        //check if the user is valid
 
-    //redirect to user.php
+        //redirect to user.php
 
-    //if not display the error
+        //if not display the error
 
+    }
+    
 
 ?>
 
