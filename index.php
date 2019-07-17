@@ -25,15 +25,36 @@
             $hashed_password = sha1($password);
 
             //prepare database query
+            $query = "SELECT * FROM user
+                    WHERE email = '{$email}'
+                    AND password = '{$hashed_password}'
+                    LIMIT 1";
+
+            $result_set = mysqli_query($connection, $$query);
+
+            if($result_set)
+            {
+                // query successfull
+
+                if(mysqli_num_rows($result_set) == 1)
+                {
+                    //valid user found
+
+                    //redirect to user.php
+                    header('Location:users.php');
+                }
+                else 
+                {
+                    //user name and password invalid
+                    $errors[] = 'Invalid username /password';
+                }
+            }else 
+            {
+                # code...
+                $errors[] = 'Database query failed';
+            }
             
-
-            //check if the user is valid
-
-            //redirect to user.php
-
-            //if not display the error
         }
-
 
     }
     
@@ -56,8 +77,14 @@
             <fieldset>
                 <legend><h1>Log In</h1></legend>
 
+                <?php 
+                    if(!isset($errors) && !empty($errors))
+                    {
+                        echo '<p class="error">Invaid Username / Password</p>';
+                    }
+                ?>
 
-                <p class="error">Invaid Username / Password</p>
+                
 
                 <p>
                     <label for="">Username :</label>
